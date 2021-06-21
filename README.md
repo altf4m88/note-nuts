@@ -24,4 +24,6 @@
 
 <hr>
 
+<h1>Note<span style="color: #2fb380;">Nuts</span></h1>
+
 <p>Built this on my own rather than begging or stealing other people's code. Would be a shame if you don't appreciate this ain't it?</p>
