@@ -28,6 +28,13 @@ class NoteController extends Controller
         return $user;
     }
 
+    public static function detail($id)
+    {
+        $note = Note::find($id);
+
+        return $note;
+    }
+
     public function create(Request $request)
     {
         $note = new Note;
@@ -48,17 +55,22 @@ class NoteController extends Controller
     {
         $note = Note::find($request->id);
 
+        $tags = explode(",", $request->tags);
+
+
         $note->title = $request->title;
         $note->note = $request->note;
-        $note->tags = $request->tags;
+        $note->tags = $tags;
 
         $note->save();
+
+        return redirect($request->id.'/detail');
     }
 
     public function delete(Request $request)
     {
         Note::find($request->id)->delete();
 
-        return 'Ok';
+        return redirect()->back();
     }
 }

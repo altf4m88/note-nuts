@@ -25,13 +25,27 @@ class PageController extends Controller
         ->with('user', $user);
     }
 
+    public function detailNote($id)
+    {
+        $user = Auth::user();
+        $user->note = NoteController::detail($id);
+
+        return view('detail_note')
+        ->with('user', $user);
+    }
+
     public function createNote()
     {
         return view('create_note');
     }
 
-    public function updateNote()
+    public function updateNote($id)
     {
-        return view('update_note');
+        $user = Auth::user();
+        $user->note = NoteController::detail($id);
+        $user->note->modified_tags = implode(',', $user->note->tags);
+
+        return view('update_note')
+        ->with('user', $user);
     }
 }

@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/dashboard', [PageController::class, 'dashboard']);
     Route::get('/notes', [PageController::class, 'notes']);
     Route::get('/create-note', [PageController::class, 'createNote']);
+    Route::get('{id}/detail', [PageController::class, 'detailNote']);
     Route::get('{id}/update-note', [PageController::class, 'updateNote']);
 
     Route::post('/create', [NoteController::class, 'create']);
