@@ -26,4 +26,4 @@
 
 <h1>NoteNuts</h1>
 
-<p>Built this on my own rather than begging or stealing other people's code. Would be a shame if you don't appreciate this work ain't i right??</p>
+<h4>Built this on my own rather than begging or stealing other people's code. Would be a shame if you don't appreciate this work ain't i right??</h4>
