@@ -21,6 +21,6 @@ class Note extends Model
     ];
     
     public function user(){
-        $this->belongsTo('user', 'id', 'user_id');
+        return $this->belongsTo(User::class, 'id', 'user_id');
     }
 }

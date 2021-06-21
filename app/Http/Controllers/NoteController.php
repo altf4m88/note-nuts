@@ -9,12 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
 {
-    public function index(Request $request)
+    public static function dashboardIndex()
+    {
+        $userId = Auth::user()->id;
+
+        $latestNotes = Note::orderBy('updated_at', 'desc')->where('user_id', $userId)->limit(2)->get();
+
+        return $latestNotes;
+    }
+
+    public static function index()
     {
         $userId = Auth::user()->id;
 
         $user = User::find($userId);
-        $user->notes();
+        $user->notes = $user->notes ?? [];
 
         return $user;
     }
@@ -22,13 +31,17 @@ class NoteController extends Controller
     public function create(Request $request)
     {
         $note = new Note;
+        $userId = Auth::user()->id;
+
+        $tags = explode(",", $request->tags);
 
         $note->title = $request->title;
         $note->note = $request->note;
-        $note->tags = $request->tags;
-        $note->user_id = $request->user_id;
+        $note->tags = $tags;
+        $note->user_id = $userId;
 
         $note->save();
+        return redirect('notes');
     }
 
     public function update(Request $request)
